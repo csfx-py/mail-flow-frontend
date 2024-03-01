@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useCallback } from "react";
 import ReactFlow, {
   Controls,
@@ -8,32 +7,53 @@ import ReactFlow, {
   addEdge,
 } from "reactflow";
 import "reactflow/dist/style.css";
+import EmailNode from "./EmailNode";
+import { useMemo } from "react";
+import { useContext } from "react";
+import { NodeContext } from "../Contexts/NodeContext";
+import WaitNode from "./WaitNode";
+import DecisionNode from "./DescisionNode";
+import CustomNode from "./CustomNode";
 
-function Flow({ nodes, setNodes, edges, setEdges }) {
-  const onNodesChange = useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+function Flow() {
+  const { nodes, setNodes, edges, setEdges } = useContext(NodeContext);
+
+  const nodeTypes = useMemo(
+    () => ({
+      emailNode: EmailNode,
+      waitNode: WaitNode,
+      decisionNode: DecisionNode,
+      customNode: CustomNode,
+    }),
     []
   );
 
+  const onNodesChange = useCallback((changes) => {
+    return setNodes((nds) => {
+      return applyNodeChanges(changes, nds);
+    });
+  }, [setNodes]);
+
   const onEdgesChange = useCallback(
     (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    []
+    [setEdges]
   );
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
-    []
+    [setEdges]
   );
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      {console.log(nodes)}
       <ReactFlow
+        nodeTypes={nodeTypes}
         nodes={nodes}
         onNodesChange={onNodesChange}
         edges={edges}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        on
         fitView
       >
         <Background />
@@ -42,12 +62,5 @@ function Flow({ nodes, setNodes, edges, setEdges }) {
     </div>
   );
 }
-
-Flow.propTypes = {
-  nodes: PropTypes.array,
-  setNodes: PropTypes.func,
-  edges: PropTypes.array,
-  setEdges: PropTypes.func,
-};
 
 export default Flow;
