@@ -1,19 +1,17 @@
-import { useCallback } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import ReactFlow, {
-  Controls,
   Background,
-  applyNodeChanges,
-  applyEdgeChanges,
+  Controls,
   addEdge,
+  applyEdgeChanges,
+  applyNodeChanges,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import EmailNode from "./EmailNode";
-import { useMemo } from "react";
-import { useContext } from "react";
 import { NodeContext } from "../Contexts/NodeContext";
-import WaitNode from "./WaitNode";
-import DecisionNode from "./DescisionNode";
 import CustomNode from "./CustomNode";
+import DecisionNode from "./DescisionNode";
+import EmailNode from "./EmailNode";
+import WaitNode from "./WaitNode";
 
 function Flow() {
   const { nodes, setNodes, edges, setEdges } = useContext(NodeContext);
@@ -28,11 +26,14 @@ function Flow() {
     []
   );
 
-  const onNodesChange = useCallback((changes) => {
-    return setNodes((nds) => {
-      return applyNodeChanges(changes, nds);
-    });
-  }, [setNodes]);
+  const onNodesChange = useCallback(
+    (changes) => {
+      return setNodes((nds) => {
+        return applyNodeChanges(changes, nds);
+      });
+    },
+    [setNodes]
+  );
 
   const onEdgesChange = useCallback(
     (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),

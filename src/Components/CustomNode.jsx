@@ -1,19 +1,21 @@
-import { useCallback } from "react";
-import { Handle, Position } from "reactflow";
 import PropTypes from "prop-types";
+import { useCallback, useContext } from "react";
+import { Handle, Position } from "reactflow";
 import { NodeContext } from "../Contexts/NodeContext";
-import { useContext } from "react";
 
 function CustomNode({ id }) {
   const { nodes, setNodes } = useContext(NodeContext);
 
-  const onChange = useCallback((e) => {
-    const { name, value } = e.target;
-    const index = nodes.findIndex((node) => node.id === id);
-    const newNodes = [...nodes];
-    newNodes[index].data[name] = value;
-    setNodes(newNodes);
-  }, [id, nodes, setNodes]);
+  const onChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      const index = nodes.findIndex((node) => node.id === id);
+      const newNodes = [...nodes];
+      newNodes[index].data[name] = value;
+      setNodes(newNodes);
+    },
+    [id, nodes, setNodes]
+  );
 
   return (
     <div className="flex flex-col bg-white p-2 shadow-lg rounded-lg border-2 border-gray-300 gap-1">

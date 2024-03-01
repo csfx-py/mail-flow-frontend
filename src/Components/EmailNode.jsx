@@ -1,8 +1,7 @@
-import { useCallback } from "react";
-import { Handle, Position } from "reactflow";
 import PropTypes from "prop-types";
+import { useCallback, useContext } from "react";
+import { Handle, Position } from "reactflow";
 import { NodeContext } from "../Contexts/NodeContext";
-import { useContext } from "react";
 
 function EmailNode({ id }) {
   const { nodes, setNodes } = useContext(NodeContext);
