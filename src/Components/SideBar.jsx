@@ -1,6 +1,5 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NodeContext } from "../Contexts/NodeContext";
-import { useState } from "react";
 
 const SideBar = () => {
   const { nodes, createFlow, editFlow, flows, setNodes, setEdges } =

@@ -1,7 +1,6 @@
-import { useContext } from "react";
-import { useState } from "react";
-import { AuthContext } from "../Contexts/AuthContext";
 import PropTypes from "prop-types";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Contexts/AuthContext";
 
 const Login = ({ setIsRegister }) => {
   const { login } = useContext(AuthContext);

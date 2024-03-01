@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Login from "../Components/Login";
-import WaveBg from "../assets/waveBG.png";
 import Register from "../Components/Register";
+import WaveBg from "../assets/waveBG.png";
 
 const Auth = () => {
   const [isRegister, setIsRegister] = useState(true);

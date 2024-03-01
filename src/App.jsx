@@ -17,10 +17,7 @@ function App() {
           path="/"
           element={user ? <Flows /> : <Navigate to="/auth" state={pathname} />}
         />
-        <Route
-          path="/auth"
-          element={user ? <Navigate to="/" /> : <Auth />}
-        />
+        <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
       </Routes>
     </div>
   );
