@@ -3,7 +3,7 @@ import { useCallback, useContext } from "react";
 import { Handle, Position } from "reactflow";
 import { NodeContext } from "../Contexts/NodeContext";
 
-function DecisionNode({ id }) {
+function DecisionNode({ id, data }) {
   const { nodes, setNodes } = useContext(NodeContext);
 
   const onChange = useCallback(
@@ -29,6 +29,7 @@ function DecisionNode({ id }) {
           name="condition"
           onChange={onChange}
           className="nodrag border-2 border-gray-300 rounded-md px-2"
+          value={data.condition}
         />
       </div>
 
@@ -39,6 +40,7 @@ function DecisionNode({ id }) {
 
 DecisionNode.propTypes = {
   id: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default DecisionNode;

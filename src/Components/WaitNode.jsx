@@ -3,7 +3,7 @@ import { useCallback, useContext } from "react";
 import { Handle, Position } from "reactflow";
 import { NodeContext } from "../Contexts/NodeContext";
 
-function WaitNode({ id }) {
+function WaitNode({ id, data }) {
   const { nodes, setNodes } = useContext(NodeContext);
 
   const onChange = useCallback(
@@ -29,6 +29,7 @@ function WaitNode({ id }) {
           name="waitFor"
           onChange={onChange}
           className="nodrag border-2 border-gray-300 rounded-md px-2"
+          value={data.waitFor}
         />
       </div>
       <Handle type="source" position={Position.Bottom} id="a" />
@@ -38,6 +39,7 @@ function WaitNode({ id }) {
 
 WaitNode.propTypes = {
   id: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default WaitNode;

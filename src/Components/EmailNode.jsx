@@ -3,7 +3,7 @@ import { useCallback, useContext } from "react";
 import { Handle, Position } from "reactflow";
 import { NodeContext } from "../Contexts/NodeContext";
 
-function EmailNode({ id }) {
+function EmailNode({ id, data }) {
   const { nodes, setNodes } = useContext(NodeContext);
 
   const onChange = useCallback(
@@ -29,6 +29,7 @@ function EmailNode({ id }) {
           name="mailId"
           onChange={onChange}
           className="nodrag border-2 border-gray-300 rounded-md px-2"
+          value={data.mailId}
         />
       </div>
       <div className="flex gap-1">
@@ -40,6 +41,7 @@ function EmailNode({ id }) {
           name="mailText"
           onChange={onChange}
           className="nodrag border-2 border-gray-300 rounded-md px-2"
+          value={data.mailText}
         />
       </div>
       <div className="flex gap-1">
@@ -51,6 +53,7 @@ function EmailNode({ id }) {
           name="mailNote"
           onChange={onChange}
           className="nodrag border-2 border-gray-300 rounded-md px-2"
+          value={data.mailNote}
         />
       </div>
       <Handle type="source" position={Position.Bottom} id="a" />
@@ -60,6 +63,7 @@ function EmailNode({ id }) {
 
 EmailNode.propTypes = {
   id: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default EmailNode;

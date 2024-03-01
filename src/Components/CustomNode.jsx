@@ -3,7 +3,7 @@ import { useCallback, useContext } from "react";
 import { Handle, Position } from "reactflow";
 import { NodeContext } from "../Contexts/NodeContext";
 
-function CustomNode({ id }) {
+function CustomNode({ id, data }) {
   const { nodes, setNodes } = useContext(NodeContext);
 
   const onChange = useCallback(
@@ -29,6 +29,7 @@ function CustomNode({ id }) {
           name="type"
           onChange={onChange}
           className="nodrag border-2 border-gray-300 rounded-md px-2"
+          value={data.type}
         />
       </div>
       <div className="flex gap-1">
@@ -40,6 +41,7 @@ function CustomNode({ id }) {
           name="note"
           onChange={onChange}
           className="nodrag border-2 border-gray-300 rounded-md px-2"
+          value={data.note}
         />
       </div>
       <Handle type="source" position={Position.Bottom} id="a" />
@@ -49,6 +51,7 @@ function CustomNode({ id }) {
 
 CustomNode.propTypes = {
   id: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default CustomNode;
