@@ -11,7 +11,6 @@ function App() {
   const { pathname } = useLocation();
   return (
     <div className="flex flex-col h-screen w-screen">
-      <Nav />
       <Routes>
         <Route
           path="/"
