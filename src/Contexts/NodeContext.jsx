@@ -13,7 +13,6 @@ export const NodeProvider = ({ children }) => {
     API.get("/node/get")
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data.flows);
           setFlows(res.data.flows);
         } else {
           throw new Error("Failed to get nodes");
