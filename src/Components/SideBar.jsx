@@ -115,7 +115,6 @@ const SideBar = () => {
           <button
             className="p-2 bg-green-500 text-white"
             onClick={async () => {
-              console.log(selectedFlow);
               await editFlow(selectedFlow);
             }}
           >
